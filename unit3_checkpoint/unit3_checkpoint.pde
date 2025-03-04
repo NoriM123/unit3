@@ -24,34 +24,27 @@ void draw() {
   fill(selectedColor);
   square(100, 100, 400);
   
-  if (dist(650, 100, mouseX, mouseY) < 50) {
-  stroke(white);   
-  } else {
-    stroke(grey);
-  }
-  
   //buttons
+  tactile(650, 100, 50);
   fill(lightblue);
   circle(650, 100, 100);
   
-  if (dist(650, 300, mouseX, mouseY) < 50) {
-    stroke(white);
-  } else {
-    stroke(grey);
-  }
-  
+  tactile(650, 300, 50);
   fill(bluepurplekinda);
   circle(650, 300, 100);
-   
-  if (dist(650, 500, mouseX, mouseY) < 50) {
-    stroke(white);
-  } else {
-    stroke(grey);
-  }
   
+  tactile(650, 500, 50);
   fill(darkdarkpurple);
   circle(650, 500, 100);
   
+}
+
+void tactile (int x, int y, int r) {
+  if (dist(x, y, mouseX, mouseY) < r) {
+    stroke(white);
+  } else {
+    stroke(grey); 
+  }
 }
 
 void mouseReleased() {

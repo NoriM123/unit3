@@ -31,7 +31,7 @@ void mouseReleased() {
 }
 
 void controlSlider() {
- if (mouseY > 100 && mouseY < 100 && mouseX > 75 && mouseX < 425) {
+ if (mouseY > 100 && mouseY < 700 && mouseX > 250 && mouseX < 350) {
     sliderX = mouseY; 
  }
 }
