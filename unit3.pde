@@ -8,8 +8,10 @@ color yellow = #FAFF00;
 color orange = #FF9E00;
 color grey = #DEDEDE;
 color buttoncolor = #5F7A81;
+color black = #030202;
 
-color selectedColor;
+
+selectedColor = black;
 
 float sliderX;
 float thickness;
@@ -27,7 +29,7 @@ void setup() {
 void draw() {
   background(255);
 
-  thickness = map(sliderX, 29, 517, 0, 15); //x, y, thickness 0-15
+  thickness = map(sliderX, 29, 517, 0, 25); //x, y, thickness 0-15
   strokeWeight(5);
   
   fill(grey);
@@ -85,16 +87,47 @@ void tactile (int x, int y, int r) {
 }
 
 void mouseDragged() {
+  controlSlider();
+  if (mouseY > 150 && mouseY < 800) {
   stroke(selectedColor);
   strokeWeight(thickness);
   line(pmouseX, pmouseY, mouseX, mouseY);
-  //do restrictions so you dont draw anywhere
-  
-  controlSlider();
+  } else {
+    strokeWeight(0);
+  }
 }
 
 void mouseReleased() {
   controlSlider();
+  
+  if(dist(50, 50, mouseX, mouseY) < 25) {
+  selectedColor = red;
+  }
+  
+  if(dist(125, 50, mouseX, mouseY) < 25) {
+  selectedColor = orange;
+  }
+  
+  if(dist(200, 50, mouseX, mouseY) < 25) {
+  selectedColor = yellow;
+  }
+  
+  if(dist(275, 50, mouseX, mouseY) < 25) {
+  selectedColor = green;
+  }
+  
+  if(dist(350, 50, mouseX, mouseY) < 25) {
+  selectedColor = blue;
+  }
+  
+  if(dist(425, 50, mouseX, mouseY) < 25) {
+  selectedColor = lightblue;
+  }
+  
+  if(dist(500, 50, mouseX, mouseY) < 25) {
+  selectedColor = purple;
+  }
+
 }
 
 void controlSlider() {
