@@ -9,37 +9,42 @@ color orange = #FF9E00;
 color grey = #DEDEDE;
 color buttoncolor = #5F7A81;
 color black = #030202;
+color white = #FFFFFF;
 
-
-selectedColor = black;
+color selectedColor;
 
 float sliderX;
 float thickness;
 
+PImage person;
+
 void setup() {
-  size(800, 800);
+  selectedColor = black;
+  size(980, 800);
   strokeWeight(5);
   textSize(30);  
-  
-  //slider
   sliderX = 275;
   thickness = 0;
+  background(255);
+  person = loadImage("person.png");
 }
 
 void draw() {
-  background(255);
-
-  thickness = map(sliderX, 29, 517, 0, 25); //x, y, thickness 0-15
+  
+  thickness = map(sliderX, 29, 517, 0, 25); //x range, x, thickness 0-15
   strokeWeight(5);
   
   fill(grey);
   stroke(0);
-  rect(2, 5, 795, 154);
+  rect(2, 5, 975, 154);
   
   fill(buttoncolor);
   stroke(0);
+  tactile1(560, 25, 50, 115);
   rect(560, 25, 50, 115);
+  tactile1(635, 25, 50, 115);
   rect(635, 25, 50, 115);
+  tactile1(710, 25, 50, 115);
   rect(710, 25, 50, 115);
   
   tactile(50, 50, 25);
@@ -70,12 +75,26 @@ void draw() {
   fill(purple);
   circle(500, 50, 50);
   
+  tactile(820, 48, 55);
+  fill(black);
+  circle(820, 48, 55);
+  
+  tactile(820, 117, 55);
+  fill(white);
+  circle(820, 117, 55);
+  
+  tactile1(862, 32, 100, 100);
+  fill(red);
+  rect(862, 32, 100, 100);
+  
   stroke(0);
+  fill(selectedColor);
   strokeWeight(thickness);
   line(29, 116, 517, 116);
   strokeWeight(5);
   circle(sliderX, 116, 20);
   
+  image(person, 862, 32);
 }
 
 void tactile (int x, int y, int r) {
@@ -84,6 +103,14 @@ void tactile (int x, int y, int r) {
   } else {
     stroke(0); 
   }
+}
+
+void tactile1 (int x, int y, int w, int h) {
+  if (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h) {
+    stroke(grey);
+  } else {
+    stroke(0);
+}
 }
 
 void mouseDragged() {
@@ -99,6 +126,14 @@ void mouseDragged() {
 
 void mouseReleased() {
   controlSlider();
+  
+  if(dist(820, 48, mouseX, mouseY) < 27) {
+  selectedColor = black;
+  }
+  
+  if(dist(820, 117, mouseX, mouseY) < 27) {
+  selectedColor = white;
+  }
   
   if(dist(50, 50, mouseX, mouseY) < 25) {
   selectedColor = red;
