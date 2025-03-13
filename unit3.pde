@@ -138,7 +138,12 @@ void mouseDragged() {
 
   void mouseReleased() {
     controlSlider();
+  
     //load button
+    if (mouseX > 710 && mouseX < 760 && mouseY > 25 && mouseY < 180) {
+      selectInput("Pick an image to load", "openImage");
+    }
+    //clear button
     if (mouseX > 560 && mouseX < 610 && mouseY > 25 && mouseY < 140) {
       fill(white);
       stroke(white);
@@ -199,5 +204,19 @@ void mouseDragged() {
   }
 
 void saveImage(File f) {
-  if (f!=null) {
-    PImage canvas
+  if (f != null) {
+    PImage canvas = get(71, 1, width-71, height-1);
+    canvas.save(f.getAbsolutePath());
+  }
+}
+
+void openImage(File f) {
+  if (f !=null) {
+    int n = 0;
+    while (n < 10) {
+      PImage pic = loadImage(f.getPath());
+      image(pic, 0, 0);
+      n = n + 1;
+    }
+  }
+}
